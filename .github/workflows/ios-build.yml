@@ -1,0 +1,20 @@
+name: Build ATLAS IP Scanner
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '*.swift'
+      - 'project.yml'
+      - '.github/workflows/ios-build.yml'
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Compile unsigned iOS simulator build
+        run: xcodebuild -project AtlasIPScanner.xcodeproj -scheme AtlasIPScanner -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
