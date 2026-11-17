@@ -1,0 +1,25 @@
+name: AtlasIPScanner
+options:
+  bundleIdPrefix: org.atlasipscanner
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  AtlasIPScanner:
+    type: application
+    platform: iOS
+    sources:
+      - path: AtlasIPScannerApp.swift
+      - path: ScannerView.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.atlasipscanner.app
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: "ATLAS IP Scanner tests TCP connectivity to devices on networks you authorize."
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGNING_ALLOWED: NO
+        SUPPORTS_MACCATALYST: NO
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: NO
+    scheme:
+      testTargets: []
